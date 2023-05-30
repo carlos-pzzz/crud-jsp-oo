@@ -5,16 +5,30 @@ import java.util.List;
 
 public class Turma {
 
-	private static int qtd = 0;
-	private static List<Aluno> alunos = new ArrayList<>();
+	private static int i = 0;
+	public static List<Aluno> alunos = new ArrayList<>();
 
-	public static boolean inserir(Aluno a) {
-		a.setId(++qtd);
-		return alunos.add(a);
+	public static boolean inserir(Aluno aluno) {
+		aluno.setId(++i);
+		return alunos.add(aluno);
 	}
 
-	public static List<Aluno> getAlunos() {
-		return Turma.alunos;
+	public static Aluno select(String nome) {
+		for (Aluno aluno : alunos) {
+			if (aluno.getNome().equals(nome)) {
+				return aluno;
+			}
+		}
+		return null;
 	}
 
+	public static boolean delete(String nome) {
+		for (Aluno aluno : alunos) {
+			if (aluno.getNome().equals(nome)) {
+				alunos.remove(aluno);
+				return true;
+			}
+		}
+		return false;
+	}
 }
